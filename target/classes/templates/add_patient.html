@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Patient Management System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+<style>
+    .navbar {
+        background-color: #7EA5B2;
+    }
+
+    .navbar-item {
+        color: #333;
+    }
+</style>
+</head>
+<body>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" th:href="@{/}">
+            <strong>Patient Management System</strong>
+        </a>
+        <a class="navbar-item" th:href="@{/patients}">
+            <strong>Patients</strong>
+        </a>
+        <a class="navbar-item" th:href="@{/patients/create}">
+            <strong>Add Patient</strong>
+        </a>
+        <a class="navbar-item" th:href="@{/logout}">
+            <strong>Logout</strong>
+        </a>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="container">
+        <form th:action="@{/patients/save}" method="post" th:object="${patient}">
+
+            <div class="control">
+                <input class="input"  type="hidden" id="id" th:field="*{id}" required>
+            </div>
+            <div class="field">
+                <label class="label">Patient Name</label>
+                <div class="control">
+                    <input class="input" type="text" name="name" required placeholder="Enter your name....">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Age</label>
+                <div class="control">
+                    <input class="input" type="number" name="age" min="0" max="120" required placeholder="Enter your age....">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Gender</label>
+                <div class="control">
+                    <div class="select">
+                        <select name="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Prefer Not to Say">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Contact Number</label>
+                <div class="control">
+                    <input class="input" type="text" name="contactNumber" required maxlength="11" minlength="11" placeholder="Enter your contact number....">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Address</label>
+                <div class="control">
+                    <input class="input" type="text" name="address" required placeholder="Enter your address....">
+                </div>
+            </div>
+
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-primary" type="submit">Save</button>
+                </div>
+                <div class="control">
+                    <button class="button is-light" type="button" th:onclick="'window.location.href = \'/patients\''" >Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+</body>
+</html>

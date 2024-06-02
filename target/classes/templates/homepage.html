@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Patient Management System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            background-color: #D8E6EA;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .navbar {
+            background-color: #7EA5B2;
+        }
+
+        .navbar-item {
+            color: #333;
+        }
+        .section {
+            margin-top: -5%;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" th:href="@{/}">
+            <strong>Patient Management System</strong>
+        </a>
+        <a class="navbar-item" th:href="@{/patients}">
+            <strong>Patients</strong>
+        </a>
+        <a class="navbar-item" th:href="@{/patients/create}">
+            <strong>Add Patient</strong>
+        </a>
+        <a class="navbar-item" th:href="@{/logout}">
+            <strong>Logout</strong>
+        </a>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="container">
+        <table class="table is-striped is-fullwidth animated-table">
+        <thead>
+            <tr style="align-items: start ">
+                <th class="has-text-left">Patient ID</th>
+                <th class="has-text-left">Name</th>
+                <th class="has-text-left">Age</th>
+                <th class="has-text-left">Gender</th>
+                <th class="has-text-left">Contact Number</th>
+                <th class="has-text-left">Address</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="patient, i : ${patients}" class="animate__animated animate__delay-[(${i.index}*0.1)]s">
+                <td th:text="${patient.id}"></td>
+                <td th:text="${patient.name}"></td>
+                <td th:text="${patient.age}"></td>
+                <td th:text="${patient.gender}"></td>
+                <td th:text="${patient.contactNumber}"></td>
+                <td th:text="${patient.address}"></td>
+                <td>
+                    <a class="button is-primary" href="#" th:href="@{/patients/{id}/edit (id=${patient.id})}">Edit</a>
+                    <a class="button is-danger" href="#" th:href="@{/patients/{id}/delete (id=${patient.id})}" onclick="deleteRow(this)">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.animated-table tbody tr').each(function() {
+            $(this).addClass('animate__fadeIn');
+        });
+    });
+</script>
+</body>
+</html>

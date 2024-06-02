@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Patient Management System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            background-color: #D8E6EA;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeInDown;
+            animation-duration: 1.5s;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp;
+            animation-duration: 1.5s;
+            animation-delay: 0.5s;
+        }
+
+        .button-container {
+            text-align: center;
+            animation: fadeIn;
+            animation-duration: 0.5s;
+            animation-delay: 1s;
+        }
+
+        .button-container .button {
+            margin-right: 1rem;
+        }
+        .navbar {
+            background-color: #7EA5B2;
+        }
+
+        .navbar-item {
+            color: #333;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" th:href="@{/}">
+            <strong>Patient Management System</strong>
+        </a>
+        <a class="navbar-item" th:href="@{/patients}">
+            <strong>Patients</strong>
+        </a>
+        <a class="navbar-item" th:href="@{/patients/create}">
+            <strong>Add Patient</strong>
+        </a>
+        <a class="navbar-item" th:href="@{/logout}">
+            <strong>Logout</strong>
+        </a>
+    </div>
+</nav>
+
+    <div class="container">
+        <h1 class="title animate__animated animate__fadeInDown">Welcome to the Patient Management System</h1>
+        <h2 class="subtitle animate__animated animate__fadeInUp">Manage your patients with ease</h2>
+
+        <div class="button-container animate__animated animate__fadeIn animate__delay-1s">
+            <a class="button is-primary is-large" th:href="@{/patients}">
+                Manage Patients
+            </a>
+            <a class="button is-info is-large" th:href="@{/patients/create}">
+                Add Patient
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
